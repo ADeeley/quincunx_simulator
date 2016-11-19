@@ -27,6 +27,7 @@ class Node():
         return self.name
 
 box_num = 0        
+
 def gen_tree(n, box_num):
     ''' Generates a tree of depth n 
         - number of nodes a the root will be n**2'''
@@ -38,14 +39,15 @@ def gen_tree(n, box_num):
         p.add_right(gen_tree(n, box_num))
         return p
     else:
-        return Node(n, box_num)
+        return Node("end", box_num)
         
-tree = gen_tree(2, box_num)
+tree = gen_tree(3, box_num)
 
-def display_tree(tree):
-    if tree.__str__() == 0:
+def display_tree_boxes(tree):
+    ''' Displays the boxes at the end branches of the tree. '''
+    if tree.__str__() == "end":
         print("box", tree.get_box())
     else:
-        display_tree(tree.get_left())
-        display_tree(tree.get_right())
-display_tree(tree)
+        display_tree_boxes(tree.get_left())
+        display_tree_boxes(tree.get_right())
+display_tree_boxes(tree)
